@@ -21,7 +21,9 @@ Para ejecutar las validaciones de los endpoints y modelos
 se usa el comando:
 ```bash
 npm test
+```
 # ejecucion del proyecto
 para levantar el servidor con recarga automatica se ejecuta el comando
 ```bash
 npm run dev
+```
