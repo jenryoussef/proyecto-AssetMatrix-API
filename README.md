@@ -15,20 +15,13 @@ siguientes variables
 (se tiene que colocar una URI validad de MONGO ATLAS)
  PORT=3000
  MONGO_URI=tu_cadena_de_conexion_mongodb_aqui
+ # pruebas unitarias (TDD)
+El proyecto cuenta con una suite de pruebas automatizadas usando Jest y Supertest.
+Para ejecutar las validaciones de los endpoints y modelos
+se usa el comando:
+```bash
+npm test
 # ejecucion del proyecto
 para levantar el servidor con recarga automatica se ejecuta el comando
 ```bash
 npm run dev
-**`src/config/db.js`**
-```javascript
-import mongoose from "mongoose";
-const connectDB = async () => {
- try {
- const conn = await mongoose.connect(process.env.MONGO_URI);
- console.log(`Mongo CONECTADO: ${conn.connection.host}`);
- } catch (error) {
- console.error(`ERROR al conectar a MongoDB: ${error.message}`);
- process.exit(1);
- }
-};
-export default connectDB;
