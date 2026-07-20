@@ -14,8 +14,7 @@ router.post("/watch", validateRequest(stockWatchSchema), addToWatchlist);
  * /stocks/history:
  *   get:
  *     summary: analisis de tendencias históricas
- *     description: obtiene el historial de precios diarios de un activo desde Alpha 
-Vantage.
+ *     description: obtiene el historial de precios diarios de un activo desde Alpha Vantage.
  *     tags:
  *       - Stocks
  *     parameters:
