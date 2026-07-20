@@ -7,6 +7,7 @@ describe("Pruebas Unitarias - Módulo Crypto", () => {
   beforeAll(async () => {
     await mongoose.connect(process.env.MONGO_URI);
   });
+
   afterAll(async () => {
     await Portfolio.deleteMany({});
     await mongoose.connection.close();

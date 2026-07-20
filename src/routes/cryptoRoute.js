@@ -1,7 +1,78 @@
 import { Router } from "express";
-import { getCoinData } from "../controllers/cryptoController.js";
+import {
+  getCoinData,
+  addPortfolioTransaction,
+  getAnalytics,
+  deleteTransaction,
+} from "../controllers/cryptoController.js";
+import { validateRequest } from "../middlewares/validateRequest.js";
+import { cryptoPortfolioSchema } from "../validations/schemas.js";
 
 const router = Router();
+
+/**
+ * @swagger
+ * /crypto/portfolio:
+ *   post:
+ *     summary: Registra transacción de compra/venta
+ *     tags: [Crypto]
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             type: object
+ *             required: [coinId, type, amount, priceAtTransaction]
+ *             properties:
+ *               coinId: { type: string, example: "bitcoin" }
+ *               type: { type: string, example: "buy" }
+ *               amount: { type: number, example: 0.5 }
+ *               priceAtTransaction: { type: number, example: 45000.00 }
+ *     responses:
+ *       201:
+ *         description: Transacción registrada en el portafolio exitosamente
+ *       500:
+ *         description: Error al registrar la transacción
+ */
+router.post(
+  "/portfolio",
+  validateRequest(cryptoPortfolioSchema),
+  addPortfolioTransaction,
+);
+
+/**
+ * @swagger
+ * /crypto/analytics:
+ *   get:
+ *     summary: Balance total de cartera histórica
+ *     tags: [Crypto]
+ *     responses:
+ *       200:
+ *         description: Analíticas generadas correctamente
+ *       500:
+ *         description: Error al generar analíticas
+ */
+router.get("/analytics", getAnalytics);
+
+/**
+ * @swagger
+ * /crypto/{tx_id}:
+ *   delete:
+ *     summary: Revierte registro de transacción
+ *     tags: [Crypto]
+ *     parameters:
+ *       - in: path
+ *         name: tx_id
+ *         required: true
+ *         schema: { type: string }
+ *     responses:
+ *       200:
+ *         description: Transacción revertida y eliminada correctamente
+ *       404:
+ *         description: Transacción no encontrada
+ *       500:
+ *         description: Error al revertir la transacción
+ */
 
 /**
  * @swagger
@@ -26,6 +97,8 @@ const router = Router();
  *       500:
  *         description: Error al consultar la API externa
  */
+
+router.delete("/:tx_id", deleteTransaction);
 router.get("/:coin", getCoinData);
 
 export default router;
