@@ -46,3 +46,7 @@ npm run dev
 ALPHA_VANTAGE_API_KEY=demo
 La API key "demo" funciona para consultas basicas de prueba con el simbolo "IBM"
 en Alpha Vantage
+
+Una vez que la consola indique que el servidor y MongoDB estan conectados, la
+Documentacion Interactiva (Swagger) estara disponible en
+http://localhost:3000/api-docs
