@@ -2,6 +2,8 @@ import request from "supertest";
 import mongoose from "mongoose";
 import app from "../src/index.js";
 import Watchlist from "../src/models/Watchlist.js";
+import dotenv from "dotenv";
+dotenv.config();
 
 describe("Pruebas Unitarias - Módulo Stocks", () => {
   beforeAll(async () => {
