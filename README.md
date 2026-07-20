@@ -1,3 +1,8 @@
+### **Integrantes del Proyecto:**
+- Jenry Youssef 30885852
+- Laura Martinez 30346546
+- Samuel Parra 30885846
+
 # AssetMatrix API
 
 API RESTful para gestionar y analizar activos financieros, hecha con Node.js, Express
